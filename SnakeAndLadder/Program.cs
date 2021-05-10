@@ -12,9 +12,9 @@ namespace SnakeAndLadder
         public void PlayGame()
         {
             Random random = new Random();
-            int Die = random.Next(1, 6);    
-            Console.WriteLine(" Player Die Roll Position :-" + Die);
-            Console.WriteLine(" Single Player Start_Position:- " + START_POSITION);
+            int Die = random.Next(1, 7);    
+            Console.WriteLine(" Player Die Roll Position : " + Die);
+            Console.WriteLine(" Single Player Start_Position:  " + START_POSITION);
             Console.ReadLine();
         }
         static void Main(string[] args)
