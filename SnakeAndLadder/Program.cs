@@ -15,9 +15,10 @@ namespace SnakeAndLadder
         const int winning_position = 100; 
         public void PlayGame()
         {
+            int[] Player = new int[2] { 0, 0 };
             int Dice_Count = 0;
-            int Player = 0;
-            while (Player < winning_position)
+            int Chance = 0;
+            while (Player[Chance] < winning_position)
             {
                 Random random = new Random(); 
                 int Die = random.Next(1, 7);    
@@ -32,29 +33,49 @@ namespace SnakeAndLadder
                         Console.WriteLine("No Play, Pass the chance");  
                         break;
                     case Ladder:
-                        Player += Die;
-                        Console.WriteLine("You got Ladder \n Player position = " + Player);
+                        if (Player[Chance] + Die <= winning_position) ;
+                        {
+                            Player[Chance] += Die;
+
+                        }
+                        Console.WriteLine("You got Ladder \n Player position = " + Chance + "--->" + "Position" + " " + Player[Chance]); 
                         break;
                     case Snakle:
-                        Player -= Die;
-                        if (Player < START_POSITION) 
+                        if (Player[Chance] - Die < START_POSITION)
                         {
-                            Player = START_POSITION; 
+                            Player[Chance] = START_POSITION;
                         }
-                        Console.WriteLine("You gotSnake \n player position = " + Player);
+                        else
+                        {
+                            Player[Chance] -= Die; 
+                        }
+                        Console.WriteLine("You gotSnake \n player = " + Chance + "---> position " + " " + Player[Chance]);
 
                         break;
+                    default:
+                        break;
+                }
+                if (Option == NoPlay || Option == Snakle)
+                {
+                    if (Chance == 0)
+                    {
+                        Chance = 1;
+                    }
+                    else
+                    {
+                        Chance = 0;
+                    }
                 }
 
             }
-            Console.WriteLine($"Position After every Dice role {Dice_Count}");
-            Console.ReadLine();
+            Console.WriteLine($"Total number of Times Dice role {Dice_Count}");
+                                                                               
+                                                                               
         }
         static void Main(string[] args)
         {
             SnakeAndLadder StartPlay = new SnakeAndLadder(); 
             StartPlay.PlayGame();
-
         }
     }
 }
