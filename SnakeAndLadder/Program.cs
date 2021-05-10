@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SnakeAndLadder
-{ 
+{  
     class SnakeAndLadder
     {
         int START_POSITION = 0; 
@@ -15,32 +15,37 @@ namespace SnakeAndLadder
         public void PlayGame()
         {
             Random random = new Random(); 
-            int Die = random.Next(1, 7);    
-            int Option = random.Next(0, 3);
+            int Die = random.Next(1, 6);    
+            int Option = random.Next(0, 3); 
             int Player = 0;
-            switch (Option) 
+            switch (Option)
             {
                 case NoPlay:
                     Console.WriteLine("No Play, Pass the chance"); 
                     break;
                 case Ladder:
                     Player = Die; // 
-                    Console.WriteLine("You got Ladder \n Player position = " + Player);
+                    Console.WriteLine("You got Ladder \n Player position = " + Player); 
                     break;
                 case Snakle:
-                    Player = Die;
-                    Console.WriteLine("You gotSnake \n player position = " + Player); 
+                    Player -= Die;
+                    if (Player < START_POSITION) 
+                    {
+                        Player = START_POSITION; 
+                    }
+                    Console.WriteLine("You gotSnake \n player position = " + Player);
+
                     break;
+
             }
-            Console.WriteLine(" Player Die Roll Position :- " + Die);                  
+            Console.WriteLine(" Player Die Roll Position :- " + Die);                   
             Console.WriteLine(" Single Player Start_Position:- " + START_POSITION);     
             Console.ReadLine();
         }
-        static void Main(string[] args)//Main method
+        static void Main(string[] args)
         {
             SnakeAndLadder StartPlay = new SnakeAndLadder(); 
             StartPlay.PlayGame();
-
         }
     }
 }
